@@ -6,8 +6,10 @@ use App\Models\Sailor;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 
 class SailorController extends Controller
 {
@@ -31,18 +33,43 @@ class SailorController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.admins.sailorForm');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return Application|RedirectResponse|Response|Redirector
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'sailor_name' => 'required',
+            'date_of_birth' => 'required',
+            'marital_status' => 'required',
+            'address' =>'required',
+            'height' =>'required',
+            'weight' => 'required',
+            'blood_type' =>'required',
+            'shoe_size' =>'required',
+            'job_status' => 'required'
+        ], [
+            'sailor_name.required' => 'Хоосон байна!!!',
+            'date_of_birth.required' => 'Хоосон байна!!!',
+            'marital_status.required' => 'Хоосон байна!!!',
+            'address.required' => 'Хоосон байна!!!',
+            'height.required' => 'Хоосон байна!!!',
+            'weight.required' => 'Хоосон байна!!!',
+            'blood_type.required' => 'Хоосон байна!!!',
+            'shoe_size.required' => 'Хоосон байна!!!',
+            'job_status.required' => 'Хоосон байна!!!',
+
+        ]);
+        Sailor::create($request->all());
+//        Sailor::create($validatedData);
+        return redirect('/admin/sailor/create')->with('message', 'Амжилттай нэмлээ');
+
     }
 
     /**

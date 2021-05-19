@@ -15,10 +15,10 @@
                     @endif
                     <div class="mb-2 w-96">
                         <label class="block text-gray-700 text-sm font-bold mb-2">
-                            Ажилтны дугаар
+                            Ажилтны нэр
                             <select name="sailor_id" class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 mt-2 block w-full appearance-none leading-normal" >
                                 @foreach($z as $z)
-                                    <option value="{{$z->sailor_id}}">{{ $z->sailor_name }}</option>
+                                    <option value="{{$z->sailor_id}}">{{ $z->sailor_name }}{{ $z->job_status }}</option>
                                 @endforeach
                             </select>
                         </label>

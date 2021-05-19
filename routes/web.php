@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SailorController;
+use App\Http\Controllers\ServiceHistoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
@@ -35,7 +36,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin', 'auth']], function(){
     Route::get('jobs', [AdminController::class, 'joblist'])->name('admin.joblist');
     Route::get('jobsearch/{id}', [AdminController::class, 'jobsearch'])->name('admin.jobsearch');
     Route::post('jobsearch/{id}', [AdminController::class, 'burtgeh'])->name('admin.burtheh');
+    Route::get('history', [ServiceHistoryController::class, 'index'])->name('admin.history');
+    Route::get('sailor/create', [SailorController::class, 'create'])->name('sailor.create');
 
+    Route::post('sailor/store', [SailorController::class, 'store'])->name('sailor.store');
 });
 
 Route::group(['prefix'=>'user', 'middleware'=>['isUser', 'auth']], function(){

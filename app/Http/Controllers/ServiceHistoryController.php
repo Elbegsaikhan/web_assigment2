@@ -15,6 +15,8 @@ class ServiceHistoryController extends Controller
     public function index()
     {
         //
+        $history = Service_history::all();
+        return view('dashboard.admins.history')->with('history', $history);
     }
 
     /**

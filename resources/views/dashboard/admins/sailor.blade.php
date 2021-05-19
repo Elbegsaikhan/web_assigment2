@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
-
     <div class=" min-w-0  bg-white w-full mb-6 shadow-lg rounded">
+        <a href="{{ route('sailor.create') }}" class="float-right px-2 p-2 my-2 bg-gray-500 text-white rounded-md focus:outline-none focus:ring-2 ring-gray-300 ring-offset-2">
+            Ажилтан бүртгэх
+        </a>
         <div class="">
             <!-- Projects table -->
             <table class="items-center w-full bg-transparent border-collapse" id="table-id">

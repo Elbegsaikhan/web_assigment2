@@ -34,17 +34,23 @@ class AdminController extends Controller
     public function jobsearch($id){
         $z = Sailor::where('job_status', 1)->orwhere('job_status', 4)->take(100)->get();
         $vid = DB::table('jobs')->where('rank', $id)->first();
-//        dd($vid)
-        $f = $vid->vname;
-//        $vid = Vessel::where('vessel_name', $vid->vname)->take(100)->get();
 //        dd($z);
         return view('dashboard.admins.jobform')->with('z', $z)->with('rankid', $id)->with('vid', $vid);
     }
 
     public function burtgeh(Request $request){
-        Service_history::create($request->all());
 //        dd($request);
+
+        Service_history::create($request->all());
+//        dd($request->rank_id);
+        DB::table('sailors')
+            ->where('sailor_id', $request->sailor_id)
+            ->update(['job_status' => 2]);
+
+        DB::delete('delete from jobs where rank = ?',[$request->rank_id]);
+
+        //        dd($request);
+
         return redirect('admin/jobs');
     }
-
 }
